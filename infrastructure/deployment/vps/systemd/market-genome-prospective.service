@@ -1,0 +1,17 @@
+[Unit]
+Description=Market Genome prospective daily run
+Documentation=file:///opt/market-genome/app/docs/operations/prospective-scheduler-readiness.md
+After=network-online.target docker.service
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/market-genome/app/infrastructure/deployment/vps
+ExecStart=/opt/market-genome/app/scripts/vps/run_prospective_daily.sh
+# Bound a single run generously (observed real-world duration: a few minutes);
+# not tight enough to kill a legitimate outcome rebuild mid-way.
+TimeoutStartSec=2400
+# No in-day restart: the next timer fire is the natural retry, and an automatic
+# restart could overlap runs before the database advisory lock is released.
+Restart=no

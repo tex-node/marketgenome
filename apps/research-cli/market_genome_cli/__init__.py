@@ -1,0 +1,2 @@
+"""Market Genome research CLI."""
+

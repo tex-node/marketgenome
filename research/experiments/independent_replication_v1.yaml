@@ -1,0 +1,68 @@
+experiment:
+  code: independent_robust_dna_replication_v1
+  classification: CONFIRMATORY_REPLICATION
+  name: Independent (Alpha Vantage) replication of robust DNA same-instrument retrieval
+
+replication:
+  protocol_code: independent_robust_dna_replication_v1
+  protocol_version: protocol_v1
+  source_experiment_id: a9390628-2efd-48ed-bcae-90bbd161d74f
+  source_study_id: d608a16b-b586-44ea-bcdc-d930957bdeeb
+
+dataset:
+  provider: alpha_vantage_v1
+  timeframe: D1
+
+window_lengths: [16, 32, 64]
+outcome_horizons: [20]
+
+primary:
+  method: dna_robust_cosine_v1
+  study_arm: same_instrument
+  neighbour_count: 10
+  weighting: uniform_v1
+  episode_cap: 1
+
+controls:
+  - unconditional_outcome_v1
+  - same_context_random_v1
+  - dna_cosine_v1
+  - shape_euclidean_v1
+
+neighbour_counts: [10]
+weighting: [uniform_v1]
+episode_caps: [1]
+study_arms: [same_instrument]
+
+validation:
+  historical_as_of: true
+  purge_overlaps: true
+  development_fraction: 0.70
+  validation_fraction: 0.30
+  # Deliberately much higher than the Yahoo pilot's per-query value (1): that broad
+  # validation evaluated ~20 methods/baselines per query, so 1 query/instrument still
+  # produced thousands of rows. This narrow design evaluates only 1 primary + 4 controls
+  # per query, so it needs many more queries per instrument to reach adequate sample
+  # size. Set from the dry-run's window-load counts, before any outcome/effect metric
+  # was inspected -- a statistical-power correction, not a post-hoc retune.
+  query_sample_per_instrument_window: 150
+  candidate_sample_limit: 500
+  temporal_embargo_bars: 0
+
+statistics:
+  bootstrap_method: time_block
+  bootstrap_iterations: 500
+  confidence_level: 0.95
+  multiple_testing_correction: benjamini_hochberg
+
+resource_limits:
+  serial_execution: true
+  maximum_parallel_workers: 1
+  resource_guard: true
+  min_available_ram_mb: 1024
+  min_free_swap_mb: 512
+  min_free_disk_gb: 15
+  maximum_evaluated_configurations: 30
+
+random:
+  seed: 1729

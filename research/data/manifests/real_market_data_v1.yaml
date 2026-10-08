@@ -1,0 +1,27 @@
+{
+  "manifest": {
+    "code": "real_market_data_v1",
+    "version": "data_manifest_v1",
+    "description": "User-supplied local OHLCV files for the formal multi-asset D1 study. Raw data files are intentionally not stored in source control."
+  },
+  "quality_thresholds": {
+    "extreme_return_threshold": 0.20,
+    "split_event_threshold": 0.45,
+    "bad_tick_threshold": 0.60,
+    "maximum_missing_volume_rate": 1.0,
+    "maximum_zero_volume_rate": 1.0
+  },
+  "datasets": [
+    {"code": "SPY_D1_USER_CSV", "symbol": "SPY", "name": "SPDR S&P 500 ETF Trust", "asset_class": "equity", "exchange": "NYSEARCA", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "timeframe_seconds": 86400, "source": "USER_CSV", "path": "../../data/raw/real_market_data_v1/SPY_D1.csv", "volume_type": "shares", "price_adjustment": "adjusted_close_compatible", "minimum_rows": 2000},
+    {"code": "QQQ_D1_USER_CSV", "symbol": "QQQ", "name": "Invesco QQQ Trust", "asset_class": "equity", "exchange": "NASDAQ", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "timeframe_seconds": 86400, "source": "USER_CSV", "path": "../../data/raw/real_market_data_v1/QQQ_D1.csv", "volume_type": "shares", "price_adjustment": "adjusted_close_compatible", "minimum_rows": 2000},
+    {"code": "IWM_D1_USER_CSV", "symbol": "IWM", "name": "iShares Russell 2000 ETF", "asset_class": "equity", "exchange": "NYSEARCA", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "timeframe_seconds": 86400, "source": "USER_CSV", "path": "../../data/raw/real_market_data_v1/IWM_D1.csv", "volume_type": "shares", "price_adjustment": "adjusted_close_compatible", "minimum_rows": 2000},
+    {"code": "GLD_D1_USER_CSV", "symbol": "GLD", "name": "SPDR Gold Shares", "asset_class": "commodity", "exchange": "NYSEARCA", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "timeframe_seconds": 86400, "source": "USER_CSV", "path": "../../data/raw/real_market_data_v1/GLD_D1.csv", "volume_type": "shares", "price_adjustment": "adjusted_close_compatible", "minimum_rows": 2000},
+    {"code": "SLV_D1_USER_CSV", "symbol": "SLV", "name": "iShares Silver Trust", "asset_class": "commodity", "exchange": "NYSEARCA", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "timeframe_seconds": 86400, "source": "USER_CSV", "path": "../../data/raw/real_market_data_v1/SLV_D1.csv", "volume_type": "shares", "price_adjustment": "adjusted_close_compatible", "minimum_rows": 2000},
+    {"code": "USO_D1_USER_CSV", "symbol": "USO", "name": "United States Oil Fund", "asset_class": "commodity", "exchange": "NYSEARCA", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "timeframe_seconds": 86400, "source": "USER_CSV", "path": "../../data/raw/real_market_data_v1/USO_D1.csv", "volume_type": "shares", "price_adjustment": "adjusted_close_compatible", "minimum_rows": 2000},
+    {"code": "EURUSD_D1_USER_CSV", "symbol": "EURUSD", "name": "Euro / US Dollar", "asset_class": "forex", "exchange": "FX", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "timeframe_seconds": 86400, "source": "USER_CSV", "path": "../../data/raw/real_market_data_v1/EURUSD_D1.csv", "volume_type": "tick", "price_adjustment": "spot", "minimum_rows": 2000},
+    {"code": "GBPUSD_D1_USER_CSV", "symbol": "GBPUSD", "name": "British Pound / US Dollar", "asset_class": "forex", "exchange": "FX", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "timeframe_seconds": 86400, "source": "USER_CSV", "path": "../../data/raw/real_market_data_v1/GBPUSD_D1.csv", "volume_type": "tick", "price_adjustment": "spot", "minimum_rows": 2000},
+    {"code": "USDJPY_D1_USER_CSV", "symbol": "USDJPY", "name": "US Dollar / Japanese Yen", "asset_class": "forex", "exchange": "FX", "currency": "JPY", "timezone": "UTC", "timeframe": "D1", "timeframe_seconds": 86400, "source": "USER_CSV", "path": "../../data/raw/real_market_data_v1/USDJPY_D1.csv", "volume_type": "tick", "price_adjustment": "spot", "minimum_rows": 2000},
+    {"code": "BTCUSD_D1_USER_CSV", "symbol": "BTCUSD", "name": "Bitcoin / US Dollar", "asset_class": "crypto", "exchange": "USER_SOURCE", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "timeframe_seconds": 86400, "source": "USER_CSV", "path": "../../data/raw/real_market_data_v1/BTCUSD_D1.csv", "volume_type": "base", "price_adjustment": "spot", "minimum_rows": 2000},
+    {"code": "ETHUSD_D1_USER_CSV", "symbol": "ETHUSD", "name": "Ethereum / US Dollar", "asset_class": "crypto", "exchange": "USER_SOURCE", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "timeframe_seconds": 86400, "source": "USER_CSV", "path": "../../data/raw/real_market_data_v1/ETHUSD_D1.csv", "volume_type": "base", "price_adjustment": "spot", "minimum_rows": 2000}
+  ]
+}

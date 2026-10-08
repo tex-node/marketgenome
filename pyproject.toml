@@ -1,0 +1,81 @@
+[project]
+name = "market-genome"
+version = "0.1.0"
+description = "Market-pattern intelligence and historical analogue retrieval research platform."
+requires-python = ">=3.12,<3.15"
+dependencies = [
+  "alembic>=1.13",
+  "fastapi>=0.115",
+  "numpy>=2.0",
+  "pandas>=2.2",
+  "psycopg[binary]>=3.2",
+  "pydantic>=2.8",
+  "pydantic-settings>=2.4",
+  "python-multipart>=0.0.9",
+  "sqlalchemy>=2.0",
+  "typer>=0.12",
+  "uvicorn[standard]>=0.30",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx>=0.27",
+  "hypothesis>=6.0",
+  "pytest>=8.2",
+  "ruff>=0.6",
+]
+yahoo = [
+  "yfinance>=0.2.40,<0.3",
+]
+
+[project.scripts]
+market-genome = "market_genome_cli.main:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+  "apps/api/market_genome_api",
+  "apps/research-cli/market_genome_cli",
+  "packages/domain/market_genome_domain",
+  "packages/context/market_genome_context",
+  "packages/features/market_genome_features",
+  "packages/data-ingestion/market_genome_data_ingestion",
+  "packages/normalization/market_genome_normalization",
+  "packages/outcomes/market_genome_outcomes",
+  "packages/similarity/market_genome_similarity",
+  "packages/validation/market_genome_validation",
+  "packages/diagnostics/market_genome_diagnostics",
+  "packages/studies/market_genome_studies",
+  "packages/replication/market_genome_replication",
+  "packages/prospective/market_genome_prospective",
+  "packages/shared/market_genome_shared",
+  "packages/window-engine/market_genome_window_engine",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [
+  "apps/api",
+  "apps/research-cli",
+  "packages/domain",
+  "packages/context",
+  "packages/features",
+  "packages/data-ingestion",
+  "packages/normalization",
+  "packages/outcomes",
+  "packages/similarity",
+  "packages/validation",
+  "packages/diagnostics",
+  "packages/studies",
+  "packages/replication",
+  "packages/prospective",
+  "packages/shared",
+  "packages/window-engine",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"

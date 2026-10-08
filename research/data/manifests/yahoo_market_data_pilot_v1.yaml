@@ -1,0 +1,43 @@
+{
+  "manifest": {
+    "code": "yahoo_market_data_pilot_v1",
+    "version": "provider_manifest_v1",
+    "description": "Bounded Yahoo Finance D1 pilot acquisition manifest. Yahoo Finance is treated as PILOT_AND_RESEARCH_SOURCE, not an authoritative institutional feed."
+  },
+  "provider": {
+    "code": "yahoo_finance_v1",
+    "classification": "PILOT_AND_RESEARCH_SOURCE"
+  },
+  "acquisition": {
+    "start": "2000-01-01",
+    "end": "2026-08-01",
+    "interval": "1d",
+    "delay_seconds": 2,
+    "retries": 3,
+    "auto_adjust": true,
+    "actions": true,
+    "dataset_version": "v1"
+  },
+  "quality_thresholds": {
+    "minimum_rows": 500,
+    "extreme_return_threshold": 0.20,
+    "split_event_threshold": 0.45,
+    "bad_tick_threshold": 0.60
+  },
+  "instruments": [
+    {"provider_symbol": "SPY", "canonical_symbol": "SPY", "name": "SPDR S&P 500 ETF Trust", "asset_class": "equity_etf", "exchange": "ARCA", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "volume_type": "exchange_volume", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "QQQ", "canonical_symbol": "QQQ", "name": "Invesco QQQ Trust", "asset_class": "equity_etf", "exchange": "NASDAQ", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "volume_type": "exchange_volume", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "DIA", "canonical_symbol": "DIA", "name": "SPDR Dow Jones Industrial Average ETF Trust", "asset_class": "equity_etf", "exchange": "ARCA", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "volume_type": "exchange_volume", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "IWM", "canonical_symbol": "IWM", "name": "iShares Russell 2000 ETF", "asset_class": "equity_etf", "exchange": "ARCA", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "volume_type": "exchange_volume", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "GC=F", "canonical_symbol": "GOLD_FUTURES_YAHOO", "name": "Gold Futures Yahoo Continuous Contract", "asset_class": "commodity_future_proxy", "exchange": "COMEX_YAHOO", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "volume_type": "contracts_or_provider_volume", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "SI=F", "canonical_symbol": "SILVER_FUTURES_YAHOO", "name": "Silver Futures Yahoo Continuous Contract", "asset_class": "commodity_future_proxy", "exchange": "COMEX_YAHOO", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "volume_type": "contracts_or_provider_volume", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "CL=F", "canonical_symbol": "WTI_FUTURES_YAHOO", "name": "WTI Crude Oil Futures Yahoo Continuous Contract", "asset_class": "commodity_future_proxy", "exchange": "NYMEX_YAHOO", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "volume_type": "contracts_or_provider_volume", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "HG=F", "canonical_symbol": "COPPER_FUTURES_YAHOO", "name": "Copper Futures Yahoo Continuous Contract", "asset_class": "commodity_future_proxy", "exchange": "COMEX_YAHOO", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "volume_type": "contracts_or_provider_volume", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "EURUSD=X", "canonical_symbol": "EURUSD", "name": "Euro / US Dollar Yahoo", "asset_class": "forex", "exchange": "YAHOO_FX", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "volume_type": "unavailable", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "GBPUSD=X", "canonical_symbol": "GBPUSD", "name": "British Pound / US Dollar Yahoo", "asset_class": "forex", "exchange": "YAHOO_FX", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "volume_type": "unavailable", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "JPY=X", "canonical_symbol": "USDJPY_YAHOO", "name": "US Dollar / Japanese Yen Yahoo", "asset_class": "forex", "exchange": "YAHOO_FX", "currency": "JPY", "timezone": "UTC", "timeframe": "D1", "volume_type": "unavailable", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "AUDUSD=X", "canonical_symbol": "AUDUSD", "name": "Australian Dollar / US Dollar Yahoo", "asset_class": "forex", "exchange": "YAHOO_FX", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "volume_type": "unavailable", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "BTC-USD", "canonical_symbol": "BTCUSD_YAHOO", "name": "Bitcoin / US Dollar Yahoo", "asset_class": "crypto", "exchange": "YAHOO_CRYPTO", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "volume_type": "base_or_provider_volume", "minimum_rows": 1500, "enabled": true},
+    {"provider_symbol": "ETH-USD", "canonical_symbol": "ETHUSD_YAHOO", "name": "Ethereum / US Dollar Yahoo", "asset_class": "crypto", "exchange": "YAHOO_CRYPTO", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "volume_type": "base_or_provider_volume", "minimum_rows": 1500, "enabled": true}
+  ]
+}

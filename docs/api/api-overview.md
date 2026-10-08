@@ -1,0 +1,104 @@
+# API overview
+
+Current endpoints:
+
+- `GET /health` returns process health.
+- `GET /ready` checks database connectivity.
+- Registry:
+  - `GET /api/v1/instruments`
+  - `POST /api/v1/instruments`
+  - `GET /api/v1/instruments/{instrument_id}`
+  - `GET /api/v1/timeframes`
+  - `POST /api/v1/timeframes`
+  - `GET /api/v1/timeframes/{timeframe_id}`
+  - `GET /api/v1/data-sources`
+  - `POST /api/v1/data-sources`
+  - `GET /api/v1/data-sources/{source_id}`
+- Import:
+  - `POST /api/v1/data/imports/csv`
+  - `GET /api/v1/data/imports`
+  - `GET /api/v1/data/imports/{import_id}`
+  - `GET /api/v1/data/imports/{import_id}/issues`
+- Windows:
+  - `POST /api/v1/windows/builds`
+  - `GET /api/v1/windows/builds`
+  - `GET /api/v1/windows/builds/{build_id}`
+  - `GET /api/v1/windows`
+  - `GET /api/v1/windows/{window_id}`
+  - `GET /api/v1/windows/{window_id}/bars`
+- Normalization:
+  - `GET /api/v1/normalization/methods`
+  - `POST /api/v1/normalization/builds`
+  - `GET /api/v1/normalization/builds`
+  - `GET /api/v1/normalization/builds/{build_id}`
+  - `GET /api/v1/normalized-patterns`
+  - `GET /api/v1/normalized-patterns/{normalized_pattern_id}`
+  - `GET /api/v1/normalized-patterns/{normalized_pattern_id}/values`
+  - `GET /api/v1/normalized-patterns/{normalized_pattern_id}/diagnostics`
+  - `GET /api/v1/features/definitions`
+  - `GET /api/v1/features/sets`
+  - `POST /api/v1/features/builds`
+  - `GET /api/v1/features/builds`
+  - `GET /api/v1/market-dna`
+  - `GET /api/v1/market-dna/{market_dna_id}/values`
+  - `GET /api/v1/market-dna/{market_dna_id}/diagnostics`
+  - `GET /api/v1/context/producers`
+  - `GET /api/v1/context/dimensions`
+  - `POST /api/v1/context/builds`
+  - `GET /api/v1/context/builds`
+  - `GET /api/v1/market-contexts`
+  - `GET /api/v1/market-contexts/{market_context_id}/explanation`
+- Outcomes:
+  - `GET /api/v1/outcomes/definitions`
+  - `GET /api/v1/outcomes/sets`
+  - `GET /api/v1/outcomes/sets/{outcome_set_code}`
+  - `POST /api/v1/outcomes/builds`
+  - `GET /api/v1/outcome-observations`
+  - `GET /api/v1/outcome-observations/{outcome_id}/values`
+  - `GET /api/v1/outcome-observations/{outcome_id}/path`
+  - `GET /api/v1/outcome-observations/{outcome_id}/barriers`
+  - `GET /api/v1/windows/{window_id}/outcomes`
+  - `GET /api/v1/similarity/methods`
+  - `POST /api/v1/similarity/search`
+  - `GET /api/v1/similarity/queries/{query_id}/matches`
+  - `GET /api/v1/windows/{window_id}/similar`
+- Validation and experiments:
+  - `GET /api/v1/experiments/definitions`
+  - `GET /api/v1/validation/methods`
+  - `GET /api/v1/validation/baselines`
+  - `GET /api/v1/validation/metrics`
+  - `GET /api/v1/validation/weighting`
+  - `POST /api/v1/experiments/runs`
+  - `GET /api/v1/experiments/runs`
+  - `GET /api/v1/experiments/runs/{run_id}`
+  - `GET /api/v1/experiments/runs/{run_id}/folds`
+  - `GET /api/v1/experiments/runs/{run_id}/evaluations`
+  - `GET /api/v1/experiments/runs/{run_id}/metrics`
+  - `GET /api/v1/experiments/runs/{run_id}/report`
+- Diagnostics:
+  - `GET /api/v1/diagnostics/definitions`
+  - `GET /api/v1/diagnostics/scaling-methods`
+  - `GET /api/v1/diagnostics/availability-policies`
+  - `GET /api/v1/diagnostics/weight-configurations`
+  - `POST /api/v1/diagnostics/experiments`
+  - `GET /api/v1/diagnostics/experiments`
+  - `GET /api/v1/diagnostics/experiments/{experiment_id}`
+  - `GET /api/v1/diagnostics/experiments/{experiment_id}/report`
+- Studies:
+  - `GET /api/v1/studies/definitions`
+  - `POST /api/v1/studies`
+  - `GET /api/v1/studies`
+  - `GET /api/v1/studies/{study_id}`
+  - `GET /api/v1/studies/{study_id}/datasets`
+  - `GET /api/v1/studies/{study_id}/preflight`
+  - `GET /api/v1/studies/{study_id}/episodes`
+  - `GET /api/v1/studies/{study_id}/arms`
+  - `POST /api/v1/studies/{study_id}/run-pilot`
+  - `POST /api/v1/studies/{study_id}/run-validation`
+  - `POST /api/v1/studies/{study_id}/lock-final-test`
+  - `POST /api/v1/studies/{study_id}/run-final-test`
+  - `GET /api/v1/studies/{study_id}/metrics`
+  - `GET /api/v1/studies/{study_id}/segments`
+  - `GET /api/v1/studies/{study_id}/episode-diversity`
+  - `GET /api/v1/studies/{study_id}/window-horizon`
+  - `GET /api/v1/studies/{study_id}/report`

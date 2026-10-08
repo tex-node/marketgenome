@@ -1,0 +1,29 @@
+{
+  "name": "Baseline market analogue validation",
+  "hypothesis": "Historical market analogue neighbours should improve directional calibration versus simple historical baselines after purging and embargo.",
+  "experiment_code": "walk_forward_analogue_validation_v1",
+  "validation_method": "expanding_walk_forward_v1",
+  "similarity_method": "market_analogue_v1",
+  "baseline_methods": [
+    "random_history_v1",
+    "same_instrument_random_v1",
+    "same_context_random_v1",
+    "unconditional_outcome_v1",
+    "naive_continuation_v1",
+    "recent_mean_return_v1"
+  ],
+  "window_lengths": [8],
+  "outcome_horizons": [1, 3, 5],
+  "validation": {
+    "fold_count": 3,
+    "minimum_index_windows": 40,
+    "test_window_count": 20,
+    "embargo_bars": 1
+  },
+  "neighbour_counts": [5, 10, 20],
+  "weighting_method": "uniform_v1",
+  "purge_source_overlap": true,
+  "purge_outcome_overlap": true,
+  "complete_outcomes_only": true,
+  "run_nonce": "baseline-market-analogue-v1"
+}

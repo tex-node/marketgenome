@@ -1,0 +1,78 @@
+{
+  "study": {
+    "code": "multi_asset_episode_study_v1",
+    "version": "study_v1",
+    "name": "independent_robust_dna_replication_v1",
+    "classification": "INDEPENDENT_REPLICATION_SOURCE"
+  },
+  "provider": {
+    "code": "alpha_vantage_v1",
+    "classification": "INDEPENDENT_PUBLIC_MARKET_DATA_PROVIDER",
+    "provider_independence": "CONFIRMED"
+  },
+  "data_manifest_code": "independent_replication_v1",
+  "runtime_requirements": {
+    "require_postgres": true,
+    "require_real_data": true
+  },
+  "provenance": {
+    "postgres_verification_status": "NOT_VERIFIED",
+    "database_revision": null,
+    "independent_replication_required": false,
+    "replication_blocker": null,
+    "source_experiment_id": "a9390628-2efd-48ed-bcae-90bbd161d74f",
+    "source_study_id": "d608a16b-b586-44ea-bcdc-d930957bdeeb"
+  },
+  "universe": {
+    "instruments": [
+      {"symbol": "EURUSD_AV", "asset_class": "forex", "timeframe": "D1", "source": "ALPHA_VANTAGE"},
+      {"symbol": "GBPUSD_AV", "asset_class": "forex", "timeframe": "D1", "source": "ALPHA_VANTAGE"},
+      {"symbol": "USDJPY_AV", "asset_class": "forex", "timeframe": "D1", "source": "ALPHA_VANTAGE"},
+      {"symbol": "AUDUSD_AV", "asset_class": "forex", "timeframe": "D1", "source": "ALPHA_VANTAGE"},
+      {"symbol": "BTCUSD_AV", "asset_class": "crypto", "timeframe": "D1", "source": "ALPHA_VANTAGE"},
+      {"symbol": "ETHUSD_AV", "asset_class": "crypto", "timeframe": "D1", "source": "ALPHA_VANTAGE"}
+    ]
+  },
+  "excluded_from_universe": [
+    {"symbol": "GOLD_FUTURES_AV", "reason": "ALPHA_VANTAGE_HAS_NO_DAILY_GOLD_OHLC_SERIES"},
+    {"symbol": "SILVER_FUTURES_AV", "reason": "ALPHA_VANTAGE_HAS_NO_DAILY_SILVER_OHLC_SERIES"},
+    {"symbol": "COPPER_FUTURES_AV", "reason": "ALPHA_VANTAGE_COPPER_SERIES_IS_MONTHLY_GLOBAL_PRICE_INDEX_NOT_DAILY_OHLC"},
+    {"symbol": "SPY_AV", "reason": "ALPHA_VANTAGE_FREE_TIER_REQUIRES_PREMIUM_FOR_OUTPUTSIZE_FULL_ON_TIME_SERIES_DAILY"},
+    {"symbol": "QQQ_AV", "reason": "ALPHA_VANTAGE_FREE_TIER_REQUIRES_PREMIUM_FOR_OUTPUTSIZE_FULL_ON_TIME_SERIES_DAILY"},
+    {"symbol": "DIA_AV", "reason": "ALPHA_VANTAGE_FREE_TIER_REQUIRES_PREMIUM_FOR_OUTPUTSIZE_FULL_ON_TIME_SERIES_DAILY"},
+    {"symbol": "IWM_AV", "reason": "ALPHA_VANTAGE_FREE_TIER_REQUIRES_PREMIUM_FOR_OUTPUTSIZE_FULL_ON_TIME_SERIES_DAILY"}
+  ],
+  "data_requirements": {
+    "minimum_bars": 500,
+    "minimum_unique_episodes": 10,
+    "preferred_unique_episodes": 30,
+    "maximum_single_episode_share": 0.20,
+    "maximum_top_three_episode_share": 0.45
+  },
+  "windows": {"lengths": [16, 32, 64, 128, 256]},
+  "outcomes": {"horizons": [1, 3, 5, 10, 20, 40, 60]},
+  "normalization": {"method": "anchored_log_return", "resampling": "linear", "points": 64},
+  "features": {"feature_set": "market_dna_v1"},
+  "context": {"producer": "transparent_context_v1"},
+  "outcome_set": {"code": "forward_outcomes_v1"},
+  "retrieval": {
+    "historical_as_of": true,
+    "purge_overlaps": true,
+    "maximum_matches_per_episode": [1],
+    "neighbour_counts": [10, 20],
+    "minimum_joint_feature_ratio": 0.70
+  },
+  "episode_definition": {
+    "code": "temporal_episode_v1",
+    "minimum_separation_bars": 0,
+    "merge_outcome_overlap": true
+  },
+  "study_quality_gate": {
+    "minimum_instruments_overall": 5,
+    "minimum_asset_classes": 2,
+    "minimum_eligible_queries_overall": 200,
+    "minimum_unique_episodes_overall": 15,
+    "minimum_complete_outcome_rate": 0.90
+  },
+  "random": {"seed": 1729}
+}

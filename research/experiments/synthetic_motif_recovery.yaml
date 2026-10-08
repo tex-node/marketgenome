@@ -1,0 +1,14 @@
+{
+  "diagnostic_code": "synthetic_motif_recovery_v1",
+  "name": "synthetic_motif_recovery",
+  "window_lengths": [16, 32],
+  "outcome_horizons": [5, 10],
+  "scaling_methods": ["robust_median_mad_v1"],
+  "similarity_methods": ["dna_robust_cosine_v1", "shape_dna_context_v2"],
+  "availability_policy": "joint_available_with_coverage_penalty_v1",
+  "minimum_joint_feature_ratio": 0.50,
+  "maximum_records": 500,
+  "maximum_pairs": 2000,
+  "seed": 1729,
+  "run_nonce": "synthetic-motif-recovery-v1"
+}

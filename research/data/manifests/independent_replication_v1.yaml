@@ -1,0 +1,49 @@
+{
+  "manifest": {
+    "code": "independent_replication_v1",
+    "version": "provider_manifest_v1",
+    "description": "Bounded Alpha Vantage D1 acquisition manifest for Phase 1 Step 10A.3 independent replication. Alpha Vantage is an independent, non-Yahoo public market-data provider used solely to test whether the Yahoo pilot's same-instrument robust Market DNA retrieval effect reproduces on genuinely independent historical data. Gold, Silver, and Copper are intentionally excluded: Alpha Vantage has no daily continuous-futures OHLC series for precious metals, and its free-tier COPPER series is a monthly/global price index, not daily OHLC. Equity ETFs (SPY, QQQ, DIA, IWM) are also excluded from this bounded run: Alpha Vantage's free tier gates outputsize=full (multi-year daily history) behind a premium subscription for TIME_SERIES_DAILY, and the free outputsize=compact fallback returns only the last 100 daily bars, far short of the study's minimum row/window-length requirements. This decision was made from a pre-acquisition dry-run smoke test, before any real replication data was touched -- not after seeing replication results. The confirmatory universe for this run is therefore 6 instruments across 2 asset classes: 4 FX pairs and 2 crypto pairs, both of which support full free-tier daily history. These are documented exclusions, not silent substitutions."
+  },
+  "provider": {
+    "code": "alpha_vantage_v1",
+    "classification": "INDEPENDENT_PUBLIC_MARKET_DATA_PROVIDER",
+    "provider_independence": "CONFIRMED"
+  },
+  "acquisition": {
+    "start": "2000-01-01",
+    "end": "2026-08-01",
+    "interval": "1d",
+    "delay_seconds": 15,
+    "retries": 1,
+    "auto_adjust": false,
+    "actions": false,
+    "dataset_version": "v1"
+  },
+  "quality_thresholds": {
+    "minimum_rows": 500,
+    "extreme_return_threshold": 0.20,
+    "split_event_threshold": 0.45,
+    "bad_tick_threshold": 0.60
+  },
+  "excluded_instruments": [
+    {"canonical_symbol": "GOLD_FUTURES_AV", "asset_class": "commodity_future_proxy", "reason": "ALPHA_VANTAGE_HAS_NO_DAILY_GOLD_OHLC_SERIES"},
+    {"canonical_symbol": "SILVER_FUTURES_AV", "asset_class": "commodity_future_proxy", "reason": "ALPHA_VANTAGE_HAS_NO_DAILY_SILVER_OHLC_SERIES"},
+    {"canonical_symbol": "COPPER_FUTURES_AV", "asset_class": "commodity_future_proxy", "reason": "ALPHA_VANTAGE_COPPER_SERIES_IS_MONTHLY_GLOBAL_PRICE_INDEX_NOT_DAILY_CONTINUOUS_FUTURES_OHLC"},
+    {"canonical_symbol": "SPY_AV", "asset_class": "equity_etf", "reason": "ALPHA_VANTAGE_FREE_TIER_REQUIRES_PREMIUM_FOR_OUTPUTSIZE_FULL_ON_TIME_SERIES_DAILY"},
+    {"canonical_symbol": "QQQ_AV", "asset_class": "equity_etf", "reason": "ALPHA_VANTAGE_FREE_TIER_REQUIRES_PREMIUM_FOR_OUTPUTSIZE_FULL_ON_TIME_SERIES_DAILY"},
+    {"canonical_symbol": "DIA_AV", "asset_class": "equity_etf", "reason": "ALPHA_VANTAGE_FREE_TIER_REQUIRES_PREMIUM_FOR_OUTPUTSIZE_FULL_ON_TIME_SERIES_DAILY"},
+    {"canonical_symbol": "IWM_AV", "asset_class": "equity_etf", "reason": "ALPHA_VANTAGE_FREE_TIER_REQUIRES_PREMIUM_FOR_OUTPUTSIZE_FULL_ON_TIME_SERIES_DAILY"}
+  ],
+  "instruments": [
+    {"provider_symbol": "SPY", "canonical_symbol": "SPY_AV", "name": "SPDR S&P 500 ETF Trust (Alpha Vantage)", "asset_class": "equity_etf", "exchange": "ARCA_ALPHA_VANTAGE", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "volume_type": "exchange_volume", "minimum_rows": 2000, "enabled": false},
+    {"provider_symbol": "QQQ", "canonical_symbol": "QQQ_AV", "name": "Invesco QQQ Trust (Alpha Vantage)", "asset_class": "equity_etf", "exchange": "NASDAQ_ALPHA_VANTAGE", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "volume_type": "exchange_volume", "minimum_rows": 2000, "enabled": false},
+    {"provider_symbol": "DIA", "canonical_symbol": "DIA_AV", "name": "SPDR Dow Jones Industrial Average ETF Trust (Alpha Vantage)", "asset_class": "equity_etf", "exchange": "ARCA_ALPHA_VANTAGE", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "volume_type": "exchange_volume", "minimum_rows": 2000, "enabled": false},
+    {"provider_symbol": "IWM", "canonical_symbol": "IWM_AV", "name": "iShares Russell 2000 ETF (Alpha Vantage)", "asset_class": "equity_etf", "exchange": "ARCA_ALPHA_VANTAGE", "currency": "USD", "timezone": "America/New_York", "timeframe": "D1", "volume_type": "exchange_volume", "minimum_rows": 2000, "enabled": false},
+    {"provider_symbol": "EUR/USD", "canonical_symbol": "EURUSD_AV", "name": "Euro / US Dollar (Alpha Vantage)", "asset_class": "forex", "exchange": "ALPHA_VANTAGE_FX", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "volume_type": "unavailable", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "GBP/USD", "canonical_symbol": "GBPUSD_AV", "name": "British Pound / US Dollar (Alpha Vantage)", "asset_class": "forex", "exchange": "ALPHA_VANTAGE_FX", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "volume_type": "unavailable", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "USD/JPY", "canonical_symbol": "USDJPY_AV", "name": "US Dollar / Japanese Yen (Alpha Vantage)", "asset_class": "forex", "exchange": "ALPHA_VANTAGE_FX", "currency": "JPY", "timezone": "UTC", "timeframe": "D1", "volume_type": "unavailable", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "AUD/USD", "canonical_symbol": "AUDUSD_AV", "name": "Australian Dollar / US Dollar (Alpha Vantage)", "asset_class": "forex", "exchange": "ALPHA_VANTAGE_FX", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "volume_type": "unavailable", "minimum_rows": 2000, "enabled": true},
+    {"provider_symbol": "BTC/USD", "canonical_symbol": "BTCUSD_AV", "name": "Bitcoin / US Dollar (Alpha Vantage)", "asset_class": "crypto", "exchange": "ALPHA_VANTAGE_CRYPTO", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "volume_type": "base_or_provider_volume", "minimum_rows": 1500, "enabled": true},
+    {"provider_symbol": "ETH/USD", "canonical_symbol": "ETHUSD_AV", "name": "Ethereum / US Dollar (Alpha Vantage)", "asset_class": "crypto", "exchange": "ALPHA_VANTAGE_CRYPTO", "currency": "USD", "timezone": "UTC", "timeframe": "D1", "volume_type": "base_or_provider_volume", "minimum_rows": 1500, "enabled": true}
+  ]
+}

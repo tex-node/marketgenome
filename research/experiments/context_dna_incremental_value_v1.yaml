@@ -1,0 +1,81 @@
+experiment:
+  code: context_dna_incremental_value_v1
+  classification: FOLLOW_UP_CONFIRMATORY_DIAGNOSTIC
+  name: Context signal isolation and Market DNA incremental-value test
+
+replication:
+  protocol_code: context_dna_incremental_value_v1
+  protocol_version: protocol_v1
+  source_experiment_id: bf59b66f-334a-4f7e-954d-b29d0938a8f6
+  source_replication_decision: REPLICATION_PARTIAL
+  source_study_id: 7b2e3649-0d69-4135-890c-b8db698b59e2
+
+dataset:
+  study_id: 7b2e3649-0d69-4135-890c-b8db698b59e2
+  provider: alpha_vantage_v1
+  timeframe: D1
+
+window_lengths: [16, 32, 64]
+outcome_horizon: 20
+
+retrieval:
+  method: dna_robust_cosine_v1
+  study_arm: same_instrument
+  k: 10
+  weighting: uniform_v1
+  episode_cap: 1
+
+context_definitions:
+  - trend_volatility
+  - trend_volatility_persistence
+  - core_context
+  - context_family
+
+# Chosen from the pre-evaluation dry-run's candidate-coverage counts alone (no outcome
+# metric was inspected): trend_volatility excluded only 1-6% of queries for insufficient
+# within-context sample across all 3 window lengths, vs 16-21% for
+# trend_volatility_persistence and 21-34% for core_context. Per the protocol's own
+# preference for the simplest reproducible context, trend_volatility is the canonical
+# definition for the headline 3-level (unconditional / context / context+DNA)
+# decomposition; all 4 definitions are still reported in the full ablation.
+canonical_context_definition: trend_volatility
+
+primary_baseline: same_context_random_v1
+reference_baselines:
+  - unconditional_outcome_v1
+  - dna_robust_cosine_v1_no_context_filter
+
+baseline_repetitions: 50
+minimum_within_context_candidates: 20
+preferred_within_context_candidates: 30
+
+validation:
+  historical_as_of: true
+  purge_overlaps: true
+  development_fraction: 0.70
+  validation_fraction: 0.30
+  query_sample_per_instrument_window: 150
+  candidate_sample_limit: 500
+  temporal_embargo_bars: 0
+
+primary_metrics:
+  - brier_score
+  - brier_skill_vs_context_random
+  - paired_brier_difference
+  - return_mae_difference
+
+statistics:
+  paired_block_bootstrap_iterations: 1000
+  confidence_level: 0.95
+  bootstrap_seed: 1729
+
+resource_limits:
+  serial_execution: true
+  maximum_parallel_workers: 1
+  resource_guard: true
+  min_available_ram_mb: 1024
+  min_free_swap_mb: 512
+  min_free_disk_gb: 15
+
+random:
+  seed: 1729

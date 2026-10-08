@@ -1,0 +1,16 @@
+[Unit]
+Description=Run the Market Genome prospective daily cycle at 11:16 UTC
+
+[Timer]
+# 11:16 UTC: the validated conservative safe time (slowest instrument's earliest
+# observed genuine availability + margin), stable across 9 weekday and 2 weekend
+# observations. See docs/operations/prospective-scheduler-readiness.md.
+OnCalendar=*-*-* 11:16:00 UTC
+# If the host was down at the scheduled time, run once on the next boot rather
+# than silently skipping the day.
+Persistent=true
+AccuracySec=1min
+Unit=market-genome-prospective.service
+
+[Install]
+WantedBy=timers.target

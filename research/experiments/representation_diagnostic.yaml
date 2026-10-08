@@ -1,0 +1,21 @@
+{
+  "diagnostic_code": "representation_quality_diagnostic_v1",
+  "name": "initial_no_edge_diagnosis",
+  "development_design": {
+    "development_fraction": 0.60,
+    "validation_fraction": 0.20,
+    "final_test_fraction": 0.20,
+    "final_test_locked": true
+  },
+  "window_lengths": [16, 32, 64],
+  "outcome_horizons": [5, 10, 20, 40],
+  "scaling_methods": ["robust_median_mad_v1", "group_balanced_robust_v1"],
+  "similarity_methods": ["dna_cosine_v1", "dna_robust_cosine_v1", "dna_robust_euclidean_v1", "dna_group_balanced_v1", "shape_dna_context_v2"],
+  "availability_policy": "joint_available_with_coverage_penalty_v1",
+  "minimum_joint_feature_ratio": 0.70,
+  "episode_grouping_distance_bars": 32,
+  "maximum_records": 1000,
+  "maximum_pairs": 5000,
+  "seed": 1729,
+  "run_nonce": "representation-diagnostic-v1"
+}
